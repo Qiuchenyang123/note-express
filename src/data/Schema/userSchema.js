@@ -1,13 +1,16 @@
 const Schema = require('../mongoose').Schema;
 const userSchema = new Schema({
+    username: {
+        type: String,
+        // require: [true, '用户名是必须的'],
+        minlength: 2,
+        maxlength: 18
+    },
     email: {
         type: String,
         // require: [true, '用户名是必须的'],
         minlength: 6,
         maxlength: 18
-    },
-    username: {
-        type: String
     },
     password: {
         type: String,
