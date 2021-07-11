@@ -1,0 +1,29 @@
+{
+  "name": "note-express",
+  "version": "1.0.0",
+  "description": "笔记的后端",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Qiuchenyang123/note-express.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Qiuchenyang123/note-express/issues"
+  },
+  "homepage": "https://github.com/Qiuchenyang123/note-express#readme",
+  "dependencies": {
+    "connect-mongo": "^4.4.1",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-session": "^1.17.2",
+    "mongoose": "^5.13.2",
+    "svg-captcha": "^1.4.0"
+  }
+}
