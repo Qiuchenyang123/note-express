@@ -26,7 +26,7 @@ router.get('/verificationCode', (req, res) => {
 
 // 注册用户
 router.post('/register', (req, res) => {
-    const {username, email, pass, avatar, nickname, phone} = req.body;
+    const {username, email, pass, avatar, nickname, phone, passTip} = req.body;
     console.log(username, email, pass, avatar, nickname, phone);
     /* let verificationCode = req.body.verificationCode;
      verificationCode = verificationCode ? verificationCode.toLocaleLowerCase() : verificationCode;
@@ -73,9 +73,10 @@ router.post('/register', (req, res) => {
                         username,
                         email,
                         password: pass,
-                        // avatar,
+                        avatar,
                         nickname,
                         phone,
+                        passTip
                         // verificationCode
                     })
                     .then(() => {
@@ -95,24 +96,18 @@ router.post('/register', (req, res) => {
 });
 // 用户登录
 router.post('/login', (req, res) => {
-    const { username, email, password } = req.body;
+    const { username, email, pass } = req.body;
     userModel
         .findOne({ username })
         .then((data) => {
-            if (data.password === password) {
-                req.session.userInfo = {
-                    id: data._id,
-                    username: data.username
-                };
+            if (data.password === pass) {
+                req.session.userInfo = data;
                 res.send({
                     code: 1,
                     success: true,
                     msg: '登录成功',
                     data: {
-                        userInfo: {
-                            id: data._id,
-                            username: data.username
-                        }
+                        userInfo: data
                     }
                 });
 
@@ -141,11 +136,21 @@ router.post('/login', (req, res) => {
         })
 });
 
+// 用户信息
+router.get('/getUserInfo', (req, res) => {
+    res.send({
+        code: 1,
+        data: {
+            userInfo: req.session.userInfo
+        }
+    })
+})
+
 // 修改用户信息(除了用户名)
 router.post('/update', (req, res) => {
-    const { username, password, avatar } = req.body;
+    const { username, email, pass, avatar, nickname, phone, passTip } = req.body;
     userModel
-        .updateOne({ username }, { password, avatar })
+        .updateOne({ username }, { password: pass, avatar, nickname, phone, passTip })
         .then(() => {})
 });
 

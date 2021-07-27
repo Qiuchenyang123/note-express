@@ -16,6 +16,9 @@ const userSchema = new Schema({
         type: String,
         require: [true, '密码必须'],
     },
+    passTip: {
+        type: String,
+    },
     nickname: {
         type: String,
         // require: [true, '昵称必须']
@@ -33,6 +36,7 @@ const userSchema = new Schema({
         match: /^1[2-9]\d{9}/,
         // require: [true, '手机号是必须的']
     },
+
     article: [{
         type: Schema.Types.ObjectId,
         ref: 'article'

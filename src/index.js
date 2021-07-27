@@ -40,9 +40,10 @@ app.use(session({
 app.use(cookieParser());
 
 // 配置静态文件
-app.use(express.static(path.join(__dirname, '../public')));
+app.use(express.static(path.join(__dirname, '/assets/')));
 // 配置接口参数
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use('/user', require("./router/user"))
+app.use('/article', require("./router/article"))
